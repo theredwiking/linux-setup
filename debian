@@ -102,7 +102,9 @@ echo "------------------------------"
 
 GNOME_PACKAGES="ubuntu-gnome-desktop gnome-shell"
 
-purge $GNOME_PACKAGES
+for package in $GNOME_PACKAGES; do
+    purge $package
+done
 
 sudo apt autoremove
 

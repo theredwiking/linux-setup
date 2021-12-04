@@ -86,7 +86,7 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
-PACKAGES=('alacritty', 'xinit', 'awesome')
+PACKAGES="alacritty xinit awesome"
 
 echo $PACKAGES
 
@@ -98,7 +98,7 @@ echo "------------------------------"
 echo "---     Removing Gnome     ---"
 echo "------------------------------"
 
-GNOME_PACKAGES=('ubuntu-gnome-desktop', 'gnome-shell')
+GNOME_PACKAGES="ubuntu-gnome-desktop gnome-shell"
 
 purge $GNOME_PACKAGES
 

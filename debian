@@ -23,7 +23,7 @@ ubuntuppa() {
 }
 
 install() {
-    sudo apt install $1
+    sudo apt install $1 -y
 }
 
 # Script
@@ -84,4 +84,4 @@ echo $PACKAGES
 
 confirm "Want to continue"
 
-install $PACKAGES -y
+install $PACKAGES

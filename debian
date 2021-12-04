@@ -86,7 +86,7 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
-PACKAGES="alacritty xinit awesome"
+PACKAGES="alacritty xinit awesome exa"
 
 echo $PACKAGES
 
@@ -103,3 +103,13 @@ GNOME_PACKAGES="ubuntu-gnome-desktop gnome-shell"
 purge $GNOME_PACKAGES
 
 sudo apt autoremove
+
+echo "-------------------------------"
+echo "---         Configs         ---"
+echo "-------------------------------"
+
+echo "Cloning dotfiles"
+
+git clone https://github.com/theredwiking/dotfiles ~/
+
+exa -lhg ~/dotfiles

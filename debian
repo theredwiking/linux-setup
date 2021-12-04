@@ -86,7 +86,7 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
-PACKAGES="alacritty xinit awesome"
+PACKAGES="alacritty xinit awesome wget curl zsh"
 
 echo $PACKAGES
 
@@ -114,6 +114,14 @@ echo "-------------------------------"
 
 echo "Cloning dotfiles"
 
-git clone https://github.com/theredwiking/dotfiles ~/dotfiles
+DOT=$HOME/dotfiles
 
-ls -la ~/dotfiles
+git clone https://github.com/theredwiking/dotfiles $DOT
+
+echo "-------------------------------"
+echo "---           ZSH           ---"
+echo "-------------------------------"
+
+echo "Installing and configuring zsh"
+
+usermod -s $(which zsh) $USER

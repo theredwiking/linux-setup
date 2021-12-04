@@ -86,7 +86,7 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
-PACKAGES="alacritty xinit awesome exa"
+PACKAGES="alacritty xinit awesome"
 
 echo $PACKAGES
 
@@ -110,6 +110,6 @@ echo "-------------------------------"
 
 echo "Cloning dotfiles"
 
-git clone https://github.com/theredwiking/dotfiles ~/
+git clone https://github.com/theredwiking/dotfiles ~/.
 
 exa -lhg ~/dotfiles

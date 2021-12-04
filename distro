@@ -20,7 +20,17 @@ echo "---     Checking Distro     ---"
 echo "-------------------------------"
 
 DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
-VERSION=$(cat /etc/os-release | grep VERSION_ID | cut -d= -f2)
+VERSION=$(lsb_release -r | cut -d: -f2 | sed s/'^\t'//)
+CODENAME=$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)
 
 echo "Distro:" $DISTRO
 echo "Version:" $VERSION
+echo "Codename:" $CODENAME
+
+if [ "$DISTRO" = "Pop" ]; then
+    echo "H"
+elif [ "$DISTRO" = "Ubuntu" ]; then
+    echo "h"
+elif [ "$DISTRO" = "Debian" ]; then
+    echo "h"
+fi

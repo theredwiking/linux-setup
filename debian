@@ -26,6 +26,14 @@ install() {
     sudo apt install $1 -y
 }
 
+remove() {
+    sudo apt-get remove --auto-remove $1 -y
+}
+
+purge() {
+    sudo apt-get remove --auto-remove --purge $1 -y
+}
+
 # Script
 
 
@@ -66,7 +74,7 @@ if [ "$DISTRO" = "Pop" ]; then
     if [ "$VERSION" > "21.04"]; then
         echo "Not need"
     else
-        alacrittyppa
+        ubuntuppa
     fi
 elif [ "$DISTRO" = "Ubuntu" ]; then
     ubuntuppa
@@ -78,10 +86,20 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
-PACKAGES=('alacritty')
+PACKAGES=('alacritty', 'xinit', 'awesome')
 
 echo $PACKAGES
 
 confirm "Want to continue"
 
 install $PACKAGES
+
+echo "------------------------------"
+echo "---     Removing Gnome     ---"
+echo "------------------------------"
+
+GNOME_PACKAGES=('ubuntu-gnome-desktop', 'gnome-shell')
+
+purge $GNOME_PACKAGES
+
+sudo apt autoremove

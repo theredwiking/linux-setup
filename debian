@@ -23,15 +23,15 @@ ubuntuppa() {
 }
 
 install() {
-    sudo apitude -y install $1
+    sudo apt -y install $1
 }
 
 remove() {
-    sudo apitude -y remove --auto-remove $1
+    sudo apt-get -y remove --auto-remove $1
 }
 
 purge() {
-    sudo apitude -y remove --auto-remove --purge $1
+    sudo apt-get -y remove --auto-remove --purge $1
 }
 
 # Script
@@ -86,15 +86,15 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
-sudo apt install apitude -y
-
 PACKAGES="alacritty xinit awesome"
 
 echo $PACKAGES
 
 confirm "Want to continue"
 
-install $PACKAGES
+for package in $PACKAGES; do
+    install $package
+done
 
 echo "------------------------------"
 echo "---     Removing Gnome     ---"

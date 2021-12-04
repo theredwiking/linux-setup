@@ -27,6 +27,8 @@ echo "Distro:" $DISTRO
 echo "Version:" $VERSION
 echo "Codename:" $CODENAME
 
+
+
 if [ "$DISTRO" = "Pop" ]; then
     echo "H"
 elif [ "$DISTRO" = "Ubuntu" ]; then

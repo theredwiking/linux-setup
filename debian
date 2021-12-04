@@ -18,8 +18,12 @@ function confirm() {
     fi
 }
 
-alacrittyppa() {
+ubuntuppa() {
     sudo add-apt-repository ppa:aslatter/ppa -y
+}
+
+install() {
+    sudo apt install $1
 }
 
 # Script
@@ -65,7 +69,7 @@ if [ "$DISTRO" = "Pop" ]; then
         alacrittyppa
     fi
 elif [ "$DISTRO" = "Ubuntu" ]; then
-    echo "Ubuntu"
+    ubuntuppa
 elif [ "$DISTRO" = "Debian" ]; then
     echo "Debian"
 fi
@@ -74,4 +78,10 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
+PACKAGES=('alacritty')
+
+echo $PACKAGES
+
 confirm "Want to continue"
+
+install $PACKAGES -y

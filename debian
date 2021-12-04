@@ -23,15 +23,15 @@ ubuntuppa() {
 }
 
 install() {
-    sudo apt install $1 -y
+    sudo apt -y install $1
 }
 
 remove() {
-    sudo apt-get remove --auto-remove $1 -y
+    sudo apt-get -y remove --auto-remove $1
 }
 
 purge() {
-    sudo apt-get remove --auto-remove --purge $1 -y
+    sudo apt-get -y remove --auto-remove --purge $1
 }
 
 # Script

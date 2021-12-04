@@ -112,4 +112,4 @@ echo "Cloning dotfiles"
 
 git clone https://github.com/theredwiking/dotfiles ~/dotfiles
 
-exa -lhg ~/dotfiles
+ls -la ~/dotfiles

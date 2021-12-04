@@ -23,15 +23,15 @@ ubuntuppa() {
 }
 
 install() {
-    sudo apt -y install $1
+    sudo apitude -y install $1
 }
 
 remove() {
-    sudo apt-get -y remove --auto-remove $1
+    sudo apitude -y remove --auto-remove $1
 }
 
 purge() {
-    sudo apt-get -y remove --auto-remove --purge $1
+    sudo apitude -y remove --auto-remove --purge $1
 }
 
 # Script
@@ -85,6 +85,8 @@ fi
 echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
+
+sudo apt install apitude -y
 
 PACKAGES="alacritty xinit awesome"
 

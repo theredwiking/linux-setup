@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #________________________________________________________________
 #░██╗░░░░░░░██╗██╗██╗░░██╗██╗███╗░░██╗░██████╗░  ░█████╗░░██████╗
 #░██║░░██╗░░██║██║██║░██╔╝██║████╗░██║██╔════╝░  ██╔══██╗██╔════╝
@@ -7,6 +7,23 @@
 #░░╚██╔╝░╚██╔╝░██║██║░╚██╗██║██║░╚███║╚██████╔╝  ╚█████╔╝██████╔╝
 #░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░  ░╚════╝░╚═════╝░
 #________________________________________________________________
+
+# Functions
+
+function confirm() {
+    read -p "$1? [Y|y|n] " -n 1 -r
+    echo ""
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 1
+    fi
+}
+
+alacrittyppa() {
+    sudo add-apt-repository ppa:aslatter/ppa -y
+}
+
+# Script
+
 
 echo "░██╗░░░░░░░██╗██╗██╗░░██╗██╗███╗░░██╗░██████╗░  ░█████╗░░██████╗
 ░██║░░██╗░░██║██║██║░██╔╝██║████╗░██║██╔════╝░  ██╔══██╗██╔════╝
@@ -27,12 +44,34 @@ echo "Distro:" $DISTRO
 echo "Version:" $VERSION
 echo "Codename:" $CODENAME
 
+echo "------------------------------"
+echo "---    Update & Upgrade    ---"
+echo "------------------------------"
 
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove
+
+echo "------------------------------"
+echo "---       Adding PPA       ---"
+echo "------------------------------"
+
+echo "aslatter/ppa"
+
+confirm "Want to continue"
 
 if [ "$DISTRO" = "Pop" ]; then
-    echo "H"
+    if [ "$VERSION" > "21.04"]; then
+        echo "Not need"
+    else
+        alacrittyppa
+    fi
 elif [ "$DISTRO" = "Ubuntu" ]; then
-    echo "h"
+    echo "Ubuntu"
 elif [ "$DISTRO" = "Debian" ]; then
-    echo "h"
+    echo "Debian"
 fi
+
+echo "------------------------------"
+echo "---      Installation      ---"
+echo "------------------------------"
+
+confirm "Want to continue"

@@ -118,7 +118,8 @@ DOT=$HOME/dotfiles
 
 git clone https://github.com/theredwiking/dotfiles $DOT
 
-echo $DOT
+echo $DOT/config
+echo $HOME
 
 cp -r $DOT/config $HOME/.config
 

@@ -120,6 +120,8 @@ git clone https://github.com/theredwiking/dotfiles $DOT
 
 cp -r $DOT/config $HOME/.config
 
+echo "awesome" > $HOME/.xinitrc
+
 echo "-------------------------------"
 echo "---           ZSH           ---"
 echo "-------------------------------"

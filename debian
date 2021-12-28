@@ -148,6 +148,6 @@ echo "-------------------------------"
 echo "---         Awesome         ---"
 echo "-------------------------------"
 
-git clone git@github.com:streetturtle/awesome-wm-widgets.git $HOME/.config/awesome/awesome-wm-widgets
+git clone https://github.com/streetturtle/awesome-wm-widgets.git $HOME/.config/awesome/awesome-wm-widgets
 
-git clone git@github.com:streetturtle/awesome-buttons.git $HOME/.config/awesome/awesome-buttons
+git clone https://github.com/streetturtle/awesome-buttons.git $HOME/.config/awesome/awesome-buttons

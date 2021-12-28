@@ -143,3 +143,11 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.conf
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.config/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.config/.oh-my-zsh/custom}/themes/powerlevel10k
+
+echo "-------------------------------"
+echo "---         Awesome         ---"
+echo "-------------------------------"
+
+git clone git@github.com:streetturtle/awesome-wm-widgets.git $HOME/.config/awesome/awesome-wm-widgets
+
+git clone git@github.com:streetturtle/awesome-buttons.git $HOME/.config/awesome/awesome-buttons

@@ -118,6 +118,10 @@ DOT=$HOME/dotfiles
 
 git clone https://github.com/theredwiking/dotfiles $DOT
 
+echo $DOT
+
+cp -r $DOT/config $HOME/.config
+
 echo "-------------------------------"
 echo "---           ZSH           ---"
 echo "-------------------------------"
@@ -125,3 +129,6 @@ echo "-------------------------------"
 echo "Installing and configuring zsh"
 
 sudo usermod -s $(which zsh) $USER
+
+#/etc/zsh/zshenv
+#export ZDOTDIR="$HOME/.config/zsh"

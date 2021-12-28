@@ -86,7 +86,7 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
-PACKAGES="alacritty xinit awesome wget curl zsh neovim lolcat figlet"
+PACKAGES="alacritty xinit awesome wget curl zsh neovim lolcat figlet suckless-tools"
 
 echo $PACKAGES
 

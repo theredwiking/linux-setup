@@ -130,3 +130,7 @@ sudo usermod -s $(which zsh) $USER
 
 #/etc/zsh/zshenv
 #export ZDOTDIR="$HOME/.config/zsh"
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+mv $HOME/.oh-my-zsh $HOME/.config/

@@ -86,7 +86,7 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
-PACKAGES="alacritty xinit awesome wget curl zsh neovim"
+PACKAGES="alacritty xinit awesome wget curl zsh neovim lolcat figlet"
 
 echo $PACKAGES
 
@@ -130,6 +130,6 @@ sudo usermod -s $(which zsh) $USER
 
 sudo echo 'export ZDOTDIR="$HOME/.config/zsh"' >> $HOME/.zshenv
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 
 mv $HOME/.oh-my-zsh $HOME/.config/

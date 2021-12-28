@@ -71,7 +71,7 @@ echo "aslatter/ppa"
 confirm "Want to continue"
 
 if [ "$DISTRO" = "Pop" ]; then
-    if [ "$VERSION" > "21.04"]; then
+    if [ "$VERSION" > "20.10"]; then
         echo "Not need"
     else
         ubuntuppa
@@ -86,7 +86,7 @@ echo "------------------------------"
 echo "---      Installation      ---"
 echo "------------------------------"
 
-PACKAGES="alacritty xinit awesome wget curl zsh"
+PACKAGES="alacritty xinit awesome wget curl zsh neovim"
 
 echo $PACKAGES
 
@@ -124,4 +124,4 @@ echo "-------------------------------"
 
 echo "Installing and configuring zsh"
 
-usermod -s $(which zsh) $USER
+sudo usermod -s $(which zsh) $USER

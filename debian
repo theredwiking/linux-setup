@@ -138,4 +138,4 @@ rm $HOME/.zshrc
 
 rm -rf $HOME/.config/.oh-my-zsh/custom
 
-mv $HOME/oh-my-zsh/custom $HOME/.config/.oh-my-zsh/
+mv $HOME/.config/oh-my-zsh/custom $HOME/.config/.oh-my-zsh/

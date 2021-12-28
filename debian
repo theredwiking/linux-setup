@@ -128,7 +128,7 @@ echo "Installing and configuring zsh"
 
 sudo usermod -s $(which zsh) $USER
 
-sudo echo 'export ZDOTDIR="$HOME/.config/zsh"' >> /etc/zsh/zshenv
+sudo echo 'export ZDOTDIR="$HOME/.config/zsh"' >> $HOME/.zshenv
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 

@@ -35,7 +35,7 @@ purge() {
 }
 
 # Script
-
+sudo echo "sudo successfully"
 
 echo "░██╗░░░░░░░██╗██╗██╗░░██╗██╗███╗░░██╗░██████╗░  ░█████╗░░██████╗
 ░██║░░██╗░░██║██║██║░██╔╝██║████╗░██║██╔════╝░  ██╔══██╗██╔════╝
@@ -133,3 +133,9 @@ sudo echo 'export ZDOTDIR="$HOME/.config/zsh"' >> $HOME/.zshenv
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 
 mv $HOME/.oh-my-zsh $HOME/.config/
+
+rm $HOME/.zshrc
+
+rm -rf $HOME/.config/.oh-my-zsh/custom
+
+mv $HOME/oh-my-zsh/custom $HOME/.config/.oh-my-zsh/

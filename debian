@@ -10,148 +10,156 @@
 
 # Functions
 
-function confirm() {
-    read -p "$1? [Y|y|n] " -n 1 -r
-    echo ""
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        exit 1
-    fi
-}
+{
+    function confirm() {
+        read -p "$1? [Y|y|n] " -n 1 -r
+        echo ""
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            exit 1
+        fi
+    }
 
-ubuntuppa() {
-    sudo add-apt-repository ppa:aslatter/ppa -y
-}
+    ubuntuppa() {
+        sudo add-apt-repository ppa:aslatter/ppa -y
+    }
 
-debianalacritty() {
-    wget https://github.com/barnumbirr/alacritty-debian/releases/download/v0.10.0-rc1-1/alacritty_0.10.0-rc1-1_amd64_bullseye.deb
-}
+    debianalacritty() {
+        wget https://github.com/barnumbirr/alacritty-debian/releases/download/v0.10.0-rc1-1/alacritty_0.10.0-rc1-1_amd64_bullseye.deb
+    }
 
-install() {
-    sudo apt -y install $1
-}
+    vimplugins() {
+        sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-remove() {
-    sudo apt-get -y remove --auto-remove $1
-}
+    }
 
-purge() {
-    sudo apt-get -y remove --auto-remove --purge $1
-}
+    install() {
+        sudo apt -y install $1
+    }
 
-# Script
-sudo echo "sudo successfully"
+    remove() {
+        sudo apt-get -y remove --auto-remove $1
+    }
 
-echo "░██╗░░░░░░░██╗██╗██╗░░██╗██╗███╗░░██╗░██████╗░  ░█████╗░░██████╗
-░██║░░██╗░░██║██║██║░██╔╝██║████╗░██║██╔════╝░  ██╔══██╗██╔════╝
-░╚██╗████╗██╔╝██║█████═╝░██║██╔██╗██║██║░░██╗░  ██║░░██║╚█████╗░
-░░████╔═████║░██║██╔═██╗░██║██║╚████║██║░░╚██╗  ██║░░██║░╚═══██╗
-░░╚██╔╝░╚██╔╝░██║██║░╚██╗██║██║░╚███║╚██████╔╝  ╚█████╔╝██████╔╝
-░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░  ░╚════╝░╚═════╝░"
+    purge() {
+        sudo apt-get -y remove --auto-remove --purge $1
+    }
 
-echo "-------------------------------"
-echo "---     Checking Distro     ---"
-echo "-------------------------------"
+    # Script
+    sudo echo "sudo successfully"
 
-DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
-VERSION=$(lsb_release -r | cut -d: -f2 | sed s/'^\t'//)
-CODENAME=$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)
+    echo "░██╗░░░░░░░██╗██╗██╗░░██╗██╗███╗░░██╗░██████╗░  ░█████╗░░██████╗
+    ░██║░░██╗░░██║██║██║░██╔╝██║████╗░██║██╔════╝░  ██╔══██╗██╔════╝
+    ░╚██╗████╗██╔╝██║█████═╝░██║██╔██╗██║██║░░██╗░  ██║░░██║╚█████╗░
+    ░░████╔═████║░██║██╔═██╗░██║██║╚████║██║░░╚██╗  ██║░░██║░╚═══██╗
+    ░░╚██╔╝░╚██╔╝░██║██║░╚██╗██║██║░╚███║╚██████╔╝  ╚█████╔╝██████╔╝
+    ░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░  ░╚════╝░╚═════╝░"
 
-echo "Distro:" $DISTRO
-echo "Version:" $VERSION
-echo "Codename:" $CODENAME
+    echo "-------------------------------"
+    echo "---     Checking Distro     ---"
+    echo "-------------------------------"
 
-echo "------------------------------"
-echo "---    Update & Upgrade    ---"
-echo "------------------------------"
+    DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
+    VERSION=$(lsb_release -r | cut -d: -f2 | sed s/'^\t'//)
+    CODENAME=$(lsb_release -c | cut -d: -f2 | sed s/'^\t'//)
 
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove
+    echo "Distro:" $DISTRO
+    echo "Version:" $VERSION
+    echo "Codename:" $CODENAME
 
-echo "------------------------------"
-echo "---       Adding PPA       ---"
-echo "------------------------------"
+    echo "------------------------------"
+    echo "---    Update & Upgrade    ---"
+    echo "------------------------------"
 
-echo "aslatter/ppa"
+    sudo apt update && sudo apt upgrade -y && sudo apt autoremove
 
-confirm "Want to continue"
+    echo "------------------------------"
+    echo "---       Adding PPA       ---"
+    echo "------------------------------"
 
-if [ "$DISTRO" = "Pop" ]; then
-    if [ "$VERSION" > "20.10"]; then
-        echo "Not need"
-    else
+    echo "aslatter/ppa"
+
+    confirm "Want to continue"
+
+    if [ "$DISTRO" = "Pop" ]; then
+        if [ "$VERSION" > "20.10"]; then
+            echo "Not need"
+        else
+            ubuntuppa
+        fi
+    elif [ "$DISTRO" = "Ubuntu" ]; then
         ubuntuppa
+    elif [ "$DISTRO" = "Debian" ]; then
+        debianalacritty
     fi
-elif [ "$DISTRO" = "Ubuntu" ]; then
-    ubuntuppa
-elif [ "$DISTRO" = "Debian" ]; then
-    debianalacritty
-fi
 
-echo "------------------------------"
-echo "---      Installation      ---"
-echo "------------------------------"
+    echo "------------------------------"
+    echo "---      Installation      ---"
+    echo "------------------------------"
 
-PACKAGES="alacritty xinit awesome wget curl zsh neovim lolcat figlet suckless-tools dmenu"
+    PACKAGES="alacritty xinit awesome wget curl zsh neovim lolcat figlet suckless-tools dmenu"
 
-echo $PACKAGES
+    echo $PACKAGES
 
-confirm "Want to continue"
+    confirm "Want to continue"
 
-for package in $PACKAGES; do
-    install $package
-done
+    for package in $PACKAGES; do
+        install $package
+    done
 
-echo "------------------------------"
-echo "---     Removing Gnome     ---"
-echo "------------------------------"
+    echo "------------------------------"
+    echo "---     Removing Gnome     ---"
+    echo "------------------------------"
 
-GNOME_PACKAGES="ubuntu-gnome-desktop gnome-shell"
+    GNOME_PACKAGES="ubuntu-gnome-desktop gnome-shell"
 
-for package in $GNOME_PACKAGES; do
-    purge $package
-done
+    for package in $GNOME_PACKAGES; do
+        purge $package
+    done
 
-sudo apt autoremove
+    sudo apt autoremove
 
-echo "-------------------------------"
-echo "---         Configs         ---"
-echo "-------------------------------"
+    echo "-------------------------------"
+    echo "---         Configs         ---"
+    echo "-------------------------------"
 
-echo "Cloning dotfiles"
+    echo "Cloning dotfiles"
 
-DOT=$HOME/dotfiles
+    DOT=$HOME/dotfiles
 
-git clone https://github.com/theredwiking/dotfiles $DOT
+    git clone https://github.com/theredwiking/dotfiles $DOT
 
-cp -r $DOT/config $HOME/.config
+    cp -r $DOT/config $HOME/.config
 
-echo "awesome" > $HOME/.xinitrc
+    echo "awesome" > $HOME/.xinitrc
 
-echo "-------------------------------"
-echo "---           ZSH           ---"
-echo "-------------------------------"
+    echo "-------------------------------"
+    echo "---           ZSH           ---"
+    echo "-------------------------------"
 
-echo "Installing and configuring zsh"
+    echo "Installing and configuring zsh"
 
-sudo usermod -s $(which zsh) $USER
+    sudo usermod -s $(which zsh) $USER
 
-sudo echo 'export ZDOTDIR="$HOME/.config/zsh"' >> $HOME/.zshenv
+    sudo echo 'export ZDOTDIR="$HOME/.config/zsh"' >> $HOME/.zshenv
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 
-mv $HOME/.oh-my-zsh $HOME/.config/
+    mv $HOME/.oh-my-zsh $HOME/.config/
 
-rm $HOME/.zshrc
+    rm $HOME/.zshrc
 
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.config/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.config/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.config/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.config/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.config/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.config/.oh-my-zsh/custom}/themes/powerlevel10k
 
-echo "-------------------------------"
-echo "---         Awesome         ---"
-echo "-------------------------------"
+    echo "-------------------------------"
+    echo "---         Awesome         ---"
+    echo "-------------------------------"
 
-git clone https://github.com/streetturtle/awesome-wm-widgets.git $HOME/.config/awesome/awesome-wm-widgets
+    git clone https://github.com/streetturtle/awesome-wm-widgets.git $HOME/.config/awesome/awesome-wm-widgets
 
-git clone https://github.com/streetturtle/awesome-buttons.git $HOME/.config/awesome/awesome-buttons
+    git clone https://github.com/streetturtle/awesome-buttons.git $HOME/.config/awesome/awesome-buttons
+}

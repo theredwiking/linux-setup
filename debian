@@ -22,6 +22,10 @@ ubuntuppa() {
     sudo add-apt-repository ppa:aslatter/ppa -y
 }
 
+debianalacritty() {
+    wget https://github.com/barnumbirr/alacritty-debian/releases/download/v0.10.0-rc1-1/alacritty_0.10.0-rc1-1_amd64_bullseye.deb
+}
+
 install() {
     sudo apt -y install $1
 }
@@ -79,7 +83,7 @@ if [ "$DISTRO" = "Pop" ]; then
 elif [ "$DISTRO" = "Ubuntu" ]; then
     ubuntuppa
 elif [ "$DISTRO" = "Debian" ]; then
-    echo "Debian"
+    debianalacritty
 fi
 
 echo "------------------------------"

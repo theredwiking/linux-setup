@@ -162,16 +162,4 @@
     git clone https://github.com/streetturtle/awesome-wm-widgets.git $HOME/.config/awesome/awesome-wm-widgets
 
     git clone https://github.com/streetturtle/awesome-buttons.git $HOME/.config/awesome/awesome-buttons
-
-    echo "-------------------------------"
-    echo "---           Nvm           ---"
-    echo "-------------------------------"
-
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-
-    source ~/.config/zsh/.zshrc
-
-    nvm install lts/gallium
-
-    nvm use lts/gallium
 }
